@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechTrove - Premium Electronics Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .dropdown-menu {
+            animation: slideIn 0.3s ease-out;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .badge-pulse {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 5px rgba(239, 68, 68, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+        .search-transition {
+            transition: width 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Announcement Bar -->
+    <div class="bg-blue-900 text-white text-center py-2 text-sm">
+        <p>🚚 Free shipping on orders over $50 | 30-day money-back guarantee</p>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-blue-600 flex items-center">
+                        <i class="bi bi-device-hdd mr-2"></i>
+                        TechTrove
+                    </a>
+                </div>
+                
+                <!-- Search Bar - Hidden on Mobile -->
+                <div class="hidden md:block mx-4 flex-grow max-w-md">
+                    <div class="relative">
+                        <input type="text" placeholder="Search products..." 
+                            class="w-full px-4 py-2 pl-10 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <i class="bi bi-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-blue-600 transition font-medium">Home</a>
+                    
+                    <!-- Categories Dropdown -->
+                    <div class="dropdown relative">
+                        <button class="text-gray-700 hover:text-blue-600 transition font-medium flex items-center">
+                            Categories <i class="bi bi-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu hidden absolute left-0 bg-white mt-2 py-2 w-56 rounded-lg shadow-xl border border-gray-100 z-50">
+                            <div class="px-4 py-3 hover:bg-gray-50 transition">
+                                <a href="#" class="font-semibold text-gray-800 flex items-center">
+                                    <i class="bi bi-phone mr-2 text-blue-500"></i>
+                                    Smartphones
+                                </a>
+                                <div class="ml-6 mt-1 text-sm text-gray-600 space-y-1">
+                                    <a href="#" class="block py-1 hover:text-blue-600 transition">iPhone</a>
+                                    <a href="#" class="block py-1 hover:text-blue-600 transition">Samsung</a>
+                                    <a href="#" class="block py-1 hover:text-blue-600 transition">Google Pixel</a>
+                                </div>
+                            </div>
+                            <div class="px-4 py-3 hover:bg-gray-50 transition">
+                                <a href="#" class="font-semibold text-gray-800 flex items-center">
+                                    <i class="bi bi-laptop mr-2 text-blue-500"></i>
+                                    Laptops
+                                </a>
+                                <div class="ml-6 mt-1 text-sm text-gray-600 space-y-1">
+                                    <a href="#" class="block py-1 hover:text-blue-600 transition">MacBook</a>
+                                    <a href="#" class="block py-1 hover:text-blue-600 transition">Dell</a>
+                                    <a href="#" class="block py-1 hover:text-blue-600 transition">HP</a>
+                                </div>
+                            </div>
+                            <div class="px-4 py-3 hover:bg-gray-50 transition">
+                                <a href="#" class="font-semibold text-gray-800 flex items-center">
+                                    <i class="bi bi-headphones mr-2 text-blue-500"></i>
+                                    Accessories
+                                </a>
+                                <div class="ml-6 mt-1 text-sm text-gray-600 space-y-1">
+                                    <a href="#" class="block py-1 hover:text-blue-600 transition">Headphones</a>
+                                    <a href="#" class="block py-1 hover:text-blue-600 transition">Chargers</a>
+                                    <a href="#" class="block py-1 hover:text-blue-600 transition">Cases</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="text-gray-700 hover:text-blue-600 transition font-medium">Deals</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 transition font-medium">Support</a>
+                </div>
+
+                <div class="flex items-center space-x-5">
+                    <button class="text-gray-700 hover:text-blue-600 transition">
+                        <i class="bi bi-person text-xl"></i>
+                    </button>
+                    <button class="text-gray-700 hover:text-blue-600 transition relative">
+                        <i class="bi bi-cart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-red-500 badge-pulse text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
+                    </button>
+                    <button class="md:hidden text-gray-700">
+                        <i class="bi bi-list text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-r from-blue-700 to-indigo-800 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1588508065123-287b28e013da?ixlib=rb-4.0.3')] bg-center opacity-10 bg-cover"></div>
+        <div class="max-w-7xl mx-auto px-4 py-20 md:py-28 relative z-10">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="text-white">
+                    <span class="inline-block bg-blue-500 bg-opacity-30 text-blue-50 px-4 py-1 rounded-full text-sm font-medium mb-4">New Collection 2023</span>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Discover Latest Tech Trends</h1>
+                    <p class="text-xl mb-8 text-blue-100">Experience premium electronics at unbeatable prices, with exclusive deals every day.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-white text-blue-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition flex items-center">
+                            Shop Now <i class="bi bi-arrow-right ml-2"></i>
+                        </button>
+                        <button class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:bg-opacity-10 transition">
+                            View Deals
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden md:block relative">
+                    <img src="https://images.unsplash.com/photo-1621570070717-717a02205b24?ixlib=rb-4.0.3" 
+                         alt="Latest Electronics" 
+                         class="rounded-lg shadow-2xl transform -rotate-3 hover:rotate-0 transition duration-300">
+                    <div class="absolute -bottom-4 -left-4 bg-white p-4 rounded-lg shadow-lg transform rotate-3 hover:rotate-0 transition duration-300">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-500 bg-green-100 px-2 py-1 rounded text-xs font-semibold">NEW</span>
+                            <span class="font-semibold text-gray-800">Ultra Pro XDR</span>
+                        </div>
+                        <div class="mt-1 flex items-center">
+                            <span class="font-bold text-blue-600">$999</span>
+                            <span class="ml-2 text-sm text-gray-500 line-through">$1,299</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 to-transparent"></div>
+    </div>
+
+    <!-- Featured Categories -->
+    <div class="max-w-7xl mx-auto px-4 py-16">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-3xl font-bold">Featured Categories</h2>
+            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                View All <i class="bi bi-chevron-right ml-1"></i>
+            </a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <a href="#" class="group">
+                <div class="bg-white rounded-xl shadow-md p-6 text-center transition transform group-hover:-translate-y-1 group-hover:shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="bi bi-phone text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold group-hover:text-blue-600 transition">Smartphones</h3>
+                    <p class="text-sm text-gray-500 mt-1">Starting at $299</p>
+                </div>
+            </a>
+            <a href="#" class="group">
+                <div class="bg-white rounded-xl shadow-md p-6 text-center transition transform group-hover:-translate-y-1 group-hover:shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="bi bi-laptop text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold group-hover:text-blue-600 transition">Laptops</h3>
+                    <p class="text-sm text-gray-500 mt-1">Starting at $599</p>
+                </div>
+            </a>
+            <a href="#" class="group">
+                <div class="bg-white rounded-xl shadow-md p-6 text-center transition transform group-hover:-translate-y-1 group-hover:shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="bi bi-headphones text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold group-hover:text-blue-600 transition">Audio</h3>
+                    <p class="text-sm text-gray-500 mt-1">Starting at $79</p>
+                </div>
+            </a>
+            <a href="#" class="group">
+                <div class="bg-white rounded-xl shadow-md p-6 text-center transition transform group-hover:-translate-y-1 group-hover:shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="bi bi-smartwatch text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold group-hover:text-blue-600 transition">Wearables</h3>
+                    <p class="text-sm text-gray-500 mt-1">Starting at $149</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Banner -->
+    <div class="max-w-7xl mx-auto px-4 my-12">
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+            <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-[url('https://images.unsplash.com/photo-1484704849700-f032a6c91a50?ixlib=rb-4.0.3')] bg-cover bg-center hidden md:block"></div>
+            <div class="md:w-2/3">
+                <span class="inline-block bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium mb-4">Limited Time Offer</span>
+                <h2 class="text-3xl font-bold mb-4">Up to 40% Off Premium Headphones</h2>
+                <p class="text-gray-600 mb-6">Experience crystal clear audio with noise cancellation technology. Offer valid until stocks last.</p>
+                <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition flex items-center space-x-2">
+                    <span>Shop Now</span>
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Products -->
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-3xl font-bold">Featured Products</h2>
+            <div class="flex space-x-2">
+                <button class="bg-gray-200 hover:bg-gray-300 p-2 rounded-full">
+                    <i class="bi bi-arrow-left"></i>
+                </button>
+                <button class="bg-blue-600 text-white hover:bg-blue-700 p-2 rounded-full">
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Product Card 1 -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden product-card border border-gray-100">
+                <div class="relative">
+                    <span class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-20%</span>
+                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3" alt="Product" class="w-full h-56 object-cover">
+                    <div class="absolute top-2 right-2">
+                        <button class="bg-white p-2 rounded-full shadow-md hover:text-red-500 transition">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex items-center mb-1">
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </div>
+                        <span class="text-gray-500 text-xs ml-1">(124)</span>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-1">Latest Smartphone Pro</h3>
+                    <p class="text-gray-600 text-sm mb-3">High-end performance with AI capabilities</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="font-bold text-xl text-blue-600">$999</span>
+                            <span class="text-gray-400 text-sm line-through ml-2">$1,199</span>
+                        </div>
+                        <button class="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition flex items-center">
+                            <i class="bi bi-cart-plus mr-1"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden product-card border border-gray-100">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?ixlib=rb-4.0.3" alt="Product" class="w-full h-56 object-cover">
+                    <div class="absolute top-2 right-2">
+                        <button class="bg-white p-2 rounded-full shadow-md hover:text-red-500 transition">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex items-center mb-1">
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <span class="text-gray-500 text-xs ml-1">(89)</span>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-1">Premium Ultrabook</h3>
+                    <p class="text-gray-600 text-sm mb-3">Ultra-thin design with all-day battery</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="font-bold text-xl text-blue-600">$1,299</span>
+                        </div>
+                        <button class="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition flex items-center">
+                            <i class="bi bi-cart-plus mr-1"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden product-card border border-gray-100">
+                <div class="relative">
+                    <span class="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">NEW</span>
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3" alt="Product" class="w-full h-56 object-cover">
+                    <div class="absolute top-2 right-2">
+                        <button class="bg-white p-2 rounded-full shadow-md hover:text-red-500 transition">
+                            <i class="bi bi-heart-fill text-red-500"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex items-center mb-1">
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <span class="text-gray-500 text-xs ml-1">(215)</span>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-1">Premium Headphones</h3>
+                    <p class="text-gray-600 text-sm mb-3">Active noise cancelling with 40h battery</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="font-bold text-xl text-blue-600">$299</span>
+                            <span class="text-gray-400 text-sm line-through ml-2">$349</span>
+                        </div>
+                        <button class="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition flex items-center">
+                            <i class="bi bi-cart-plus mr-1"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden product-card border border-gray-100">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3" alt="Product" class="w-full h-56 object-cover">
+                    <div class="absolute top-2 right-2">
+                        <button class="bg-white p-2 rounded-full shadow-md hover:text-red-500 transition">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex items-center mb-1">
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <span class="text-gray-500 text-xs ml-1">(76)</span>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-1">SmartWatch Pro</h3>
+                    <p class="text-gray-600 text-sm mb-3">Fitness tracking with health monitoring</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="font-bold text-xl text-blue-600">$199</span>
+                        </div>
+                        <button class="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition flex items-center">
+                            <i class="bi bi-cart-plus mr-1"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-10 text-center">
+            <button class="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition px-6 py-2 rounded-lg font-medium">
+                View All Products
+            </button>
+        </div>
+    </div>
+
+    <!-- Why Choose Us -->
+    <div class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Why Choose TechTrove</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm text-center hover:shadow-md transition flex flex-col items-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="bi bi-truck text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Free Shipping</h3>
+                    <p class="text-gray-600 text-sm">On all orders above $50</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm text-center hover:shadow-md transition flex flex-col items-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="bi bi-shield-check text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Secure Payment</h3>
+                    <p class="text-gray-600 text-sm">100% secure payment</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm text-center hover:shadow-md transition flex flex-col items-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="bi bi-arrow-return-left text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Easy Returns</h3>
+                    <p class="text-gray-600 text-sm">30-day return policy</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm text-center hover:shadow-md transition flex flex-col items-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="bi bi-headset text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">24/7 Support</h3>
+                    <p class="text-gray-600 text-sm">Dedicated support team</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <div class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-8 md:p-12">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold mb-4 text-white">Stay Updated</h2>
+                    <p class="text-blue-100 mb-8">Subscribe to our newsletter for the latest products, exclusive deals and tech news</p>
+                    <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+                        <input type="email" placeholder="Enter your email" 
+                               class="flex-1 px-4 py-3 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-white">
+                        <button type="submit" class="bg-white text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 transition font-medium">
+                            Subscribe
+                        </button>
+                    </form>
+                    <p class="text-blue-200 text-xs mt-4">By subscribing, you agree to our Privacy Policy and consent to receive updates.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="max-w-7xl mx-auto px-4 py-16">
+        <h2 class="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 relative">
+                <div class="absolute -top-5 left-6 bg-blue-600 text-white p-3 rounded-full">
+                    <i class="bi bi-quote"></i>
+                </div>
+                <div class="pt-4">
+                    <p class="text-gray-600 mb-4">"The delivery was super fast and the product quality exceeded my expectations. Will definitely shop here again!"</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="bi bi-person text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Sarah Johnson</h4>
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-gray-400 text-sm">2 days ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 relative">
+                <div class="absolute -top-5 left-6 bg-blue-600 text-white p-3 rounded-full">
+                    <i class="bi bi-quote"></i>
+                </div>
+                <div class="pt-4">
+                    <p class="text-gray-600 mb-4">"Great customer service! They helped me pick the perfect laptop for my needs and the price was competitive."</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="bi bi-person text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Michael Chen</h4>
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-gray-400 text-sm">1 week ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 relative">
+                <div class="absolute -top-5 left-6 bg-blue-600 text-white p-3 rounded-full">
+                    <i class="bi bi-quote"></i>
+                </div>
+                <div class="pt-4">
+                    <p class="text-gray-600 mb-4">"The headphones I bought are amazing! Crystal clear sound quality and the noise cancellation is perfect for my commute."</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="bi bi-person text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Emily Wilson</h4>
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-gray-400 text-sm">3 weeks ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 pb-10">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 flex items-center">
+                        <i class="bi bi-device-hdd mr-2"></i>
+                        TechTrove
+                    </h3>
+                    <p class="text-gray-400 mb-4">Your premier destination for premium electronics and accessories at competitive prices.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="bg-gray-800 hover:bg-blue-600 transition w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-blue-600 transition w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-blue-600 transition w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-blue-600 transition w-10 h-10 rounded-full flex items-center justify-center">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4 border-b border-gray-800 pb-2">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition flex items-center"><i class="bi bi-chevron-right text-xs mr-2"></i> About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center"><i class="bi bi-chevron-right text-xs mr-2"></i> Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center"><i class="bi bi-chevron-right text-xs mr-2"></i> Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center"><i class="bi bi-chevron-right text-xs mr-2"></i> FAQs</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center"><i class="bi bi-chevron-right text-xs mr-2"></i> Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4 border-b border-gray-800 pb-2">Customer Service</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition flex items-center"><i class="bi bi-chevron-right text-xs mr-2"></i> Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center"><i class="bi bi-chevron-right text-xs mr-2"></i> Returns Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center"><i class="bi bi-chevron-right text-xs mr-2"></i> Track Order</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center"><i class="bi bi-chevron-right text-xs mr-2"></i> Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center"><i class="bi bi-chevron-right text-xs mr-2"></i> Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4 border-b border-gray-800 pb-2">Contact Info</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="bi bi-geo-alt text-blue-500 mr-3"></i>
+                            <span>123 Tech Street, Digital City, 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-telephone text-blue-500 mr-3"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-envelope text-blue-500 mr-3"></i>
+                            <span>support@techtrove.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-clock text-blue-500 mr-3"></i>
+                            <span>Mon-Fri: 9AM-6PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© 2023 TechTrove. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <img src="https://via.placeholder.com/50x30/white?text=Visa" alt="Visa" class="h-6">
+                    <img src="https://via.placeholder.com/50x30/white?text=MC" alt="Mastercard" class="h-6">
+                    <img src="https://via.placeholder.com/50x30/white?text=Amex" alt="American Express" class="h-6">
+                    <img src="https://via.placeholder.com/50x30/white?text=PayPal" alt="PayPal" class="h-6">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div class="fixed inset-0 bg-gray-900 bg-opacity-70 z-50 hidden" id="mobile-menu-overlay">
+        <div class="bg-white h-full w-4/5 max-w-xs p-5 transform transition-transform">
+            <div class="flex justify-between items-center mb-6">
+                <a href="#" class="text-2xl font-bold text-blue-600">TechTrove</a>
+                <button id="close-mobile-menu" class="text-gray-500">
+                    <i class="bi bi-x-lg text-2xl"></i>
+                </button>
+            </div>
+            
+            <ul class="space-y-4 border-b border-gray-200 pb-6 mb-6">
+                <li><a href="#" class="text-gray-800 hover:text-blue-600 block py-2">Home</a></li>
+                <li>
+                    <button class="flex justify-between items-center w-full text-gray-800 py-2">
+                        Categories <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <ul class="pl-4 mt-1 space-y-2 hidden">
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 block py-1">Smartphones</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 block py-1">Laptops</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 block py-1">Audio</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600 block py-1">Wearables</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="text-gray-800 hover:text-blue-600 block py-2">Deals</a></li>
+                <li><a href="#" class="text-gray-800 hover:text-blue-600 block py-2">Support</a></li>
+            </ul>
+            
+            <div class="space-y-4">
+                <a href="#" class="flex items-center text-gray-800 hover:text-blue-600">
+                    <i class="bi bi-person mr-2"></i> My Account
+                </a>
+                <a href="#" class="flex items-center text-gray-800 hover:text-blue-600">
+                    <i class="bi bi-cart mr-2"></i> Cart (3)
+                </a>
+                <a href="#" class="flex items-center text-gray-800 hover:text-blue-600">
+                    <i class="bi bi-heart mr-2"></i> Wishlist
+                </a>
+            </div>
+            
+            <div class="mt-10 pt-6 border-t border-gray-200">
+                <button class="bg-blue-600 text-white rounded-lg py-2 px-4 w-full">
+                    Contact Us
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.bi-list').parentElement;
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const closeMenuButton = document.getElementById('close-mobile-menu');
+            
+            if(mobileMenuButton && mobileMenuOverlay && closeMenuButton) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenuOverlay.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                closeMenuButton.addEventListener('click', function() {
+                    mobileMenuOverlay.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+
+            // Add to cart functionality
+            const addToCartButtons = document.querySelectorAll('button:has(.bi-cart-plus)');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const notification = document.createElement('div');
+                    notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                    notification.innerHTML = 'Product added to cart!';
+                    document.body.appendChild(notification);
+                    
+                    setTimeout(() => {
+                        notification.style.opacity = '0';
+                        notification.style.transition = 'opacity 0.5s';
+                        setTimeout(() => {
+                            notification.remove();
+                        }, 500);
+                    }, 2000);
+                });
+            });
+
+            // Mobile submenu toggle
+            const categoryButton = document.querySelector('button:has(.bi-chevron-down)');
+            if(categoryButton) {
+                categoryButton.addEventListener('click', function() {
+                    const submenu = this.nextElementSibling;
+                    if(submenu.classList.contains('hidden')) {
+                        submenu.classList.remove('hidden');
+                    } else {
+                        submenu.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
